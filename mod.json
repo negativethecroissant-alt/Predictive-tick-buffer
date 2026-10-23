@@ -1,0 +1,94 @@
+{
+    "geode": "5.10.0",
+    "gd": {
+        "android": "2.2081",
+        "win": "2.2081",
+        "mac": "2.2081",
+        "ios": "2.2081"
+    },
+    "id": "dev.tickbuffer",
+    "name": "Tick Buffer Auto-Correct",
+    "version": "v1.0.0",
+    "developer": "TickBufferDev",
+    "description": "Buffers early clicks by 1-16 ticks on 240 TPS until a tick that passes the click and survives the next 480 ticks.",
+    "tags": [
+        "gameplay",
+        "utility",
+        "offline"
+    ],
+    "settings": {
+        "general-title": {
+            "type": "title",
+            "name": "Tick Buffer Auto-Correct (240 TPS)"
+        },
+        "enabled": {
+            "type": "bool",
+            "name": "Enable Auto Tick Buffer",
+            "description": "Automatically buffers early clicks by 1 to N ticks until a tick that passes the click and survives the next 480 ticks on 240 TPS.",
+            "default": true
+        },
+        "max-early-ticks": {
+            "type": "int",
+            "name": "Early Click Window (Ticks)",
+            "description": "Maximum number of ticks (1-16) at 240 TPS to delay/buffer an early click to find a surviving trajectory.",
+            "default": 6,
+            "min": 1,
+            "max": 16,
+            "control": {
+                "arrows": true,
+                "arrow-step": 1,
+                "big-arrows": true,
+                "big-arrow-step": 4,
+                "slider": true,
+                "slider-step": 1,
+                "input": true
+            }
+        },
+        "lookahead-ticks": {
+            "type": "int",
+            "name": "Survival Check Lookahead (Ticks)",
+            "description": "Number of future 240 TPS ticks to simulate to verify the click does not die (default: 480 ticks = 2.0 seconds at 240 TPS).",
+            "default": 480,
+            "min": 60,
+            "max": 960,
+            "control": {
+                "arrows": true,
+                "arrow-step": 60,
+                "slider": true,
+                "slider-step": 20,
+                "input": true
+            }
+        },
+        "min-hold-ticks": {
+            "type": "int",
+            "name": "Minimum Buffered Hold (Ticks)",
+            "description": "If you release your tap before the buffered click fires, hold the injected click for at least this many 240Hz ticks.",
+            "default": 2,
+            "min": 1,
+            "max": 8,
+            "control": {
+                "arrows": true,
+                "arrow-step": 1,
+                "slider": true,
+                "slider-step": 1,
+                "input": false
+            }
+        },
+        "ui-title": {
+            "type": "title",
+            "name": "In-Game HUD & Dual Mode"
+        },
+        "show-hud": {
+            "type": "bool",
+            "name": "Show Live Buffer HUD",
+            "description": "Displays a small status label in PlayLayer showing current 1-16 tick window and how many ticks the last click was buffered.",
+            "default": true
+        },
+        "dual-player": {
+            "type": "bool",
+            "name": "Apply to Player 2 (Dual Mode)",
+            "description": "Also auto-buffers early clicks for the secondary player in Dual / 2-Player levels.",
+            "default": true
+        }
+    }
+}
